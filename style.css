@@ -246,3 +246,35 @@ textarea{
 .rsvp-form {
   margin-top: 35px;
 }
+.thirty-divider {
+  height: 300px;
+  background: #000;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+}
+
+.big-30 {
+  font-family: "Playfair Display", serif;
+  font-size: 190px;
+  line-height: .75;
+  font-weight: 500;
+
+  color: #d7bd8b;
+  opacity: .22;
+}
+
+.years {
+  margin-top: 25px;
+
+  color: #d7bd8b;
+  font-size: 10px;
+  letter-spacing: .65em;
+  padding-left: .65em;
+
+  opacity: .75;
+}
