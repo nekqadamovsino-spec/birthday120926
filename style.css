@@ -27,13 +27,12 @@ body{
   background: #000;
   overflow: hidden;
 }
-.full-photo{
+.full-photo {
   width: 100%;
-  height: auto;
-  min-height: 100svh;
+  height: 100svh;
   display: block;
-  object-fit: cover;
-  object-position: center top;
+  object-fit: fill;
+  object-position: center;
 }
 .scroll-hint{
   position:absolute;
