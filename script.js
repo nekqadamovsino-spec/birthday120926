@@ -16,3 +16,23 @@ form.addEventListener('submit', (e) => {
   message.textContent = 'Спасибо! Ваш ответ сохранён.';
   form.reset();
 });
+const bgMusic = document.getElementById('bgMusic');
+const musicBtn = document.getElementById('musicBtn');
+
+let musicPlaying = false;
+
+musicBtn.addEventListener('click', async () => {
+  if (musicPlaying) {
+    bgMusic.pause();
+    musicBtn.classList.remove('playing');
+    musicPlaying = false;
+  } else {
+    try {
+      await bgMusic.play();
+      musicBtn.classList.add('playing');
+      musicPlaying = true;
+    } catch (error) {
+      console.log('Не удалось запустить музыку:', error);
+    }
+  }
+});
