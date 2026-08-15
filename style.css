@@ -194,3 +194,50 @@ textarea{
   letter-spacing:.24em;
   font-size:9px;
 }
+.music-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 9999;
+
+  width: 46px;
+  height: 46px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #d7bd8b;
+  border-radius: 50%;
+
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+
+  color: #d7bd8b;
+  cursor: pointer;
+
+  box-shadow: 0 4px 18px rgba(0,0,0,.25);
+}
+
+.music-note {
+  font-size: 25px;
+  line-height: 1;
+  color: #d7bd8b;
+}
+
+.music-btn.playing .music-note {
+  animation: musicPulse 1.2s ease-in-out infinite;
+}
+
+@keyframes musicPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.18);
+    opacity: .65;
+  }
+}
