@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#000000">
+  <title>Birthday Party — 12.09.2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <main class="invitation">
+    <!-- 1 страница: только первое фото -->
+    <section class="screen photo-screen" id="page1">
+      <img src="page1.jpeg" alt="Birthday 30" class="full-photo">
+      <a class="scroll-hint" href="#page2" aria-label="Листать вниз">
+        <span>листайте вниз</span>
+        <b>↓</b>
+      </a>
+    </section>
+
+    <!-- 2 страница: только второе фото -->
+    <section class="screen photo-screen" id="page2">
+      <img src="page2.jpeg" alt="Информация о дне рождения" class="full-photo">
+      <a class="scroll-hint dark" href="#rsvp" aria-label="Перейти к подтверждению">
+        <span>подтвердить присутствие</span>
+        <b>↓</b>
+      </a>
+    </section>
+
+    <!-- 3 страница: подтверждение -->
+    <section class="screen rsvp-screen" id="rsvp">
+      <div class="rsvp-card">
+        <div class="small-title">12 · 09 · 2026</div>
+        <h1>Подтвердите<br>своё присутствие</h1>
+        <p class="lead">Буду рад видеть вас на моём дне рождения. Пожалуйста, ответьте до 25 августа.</p>
+
+        <form id="rsvpForm">
+          <label class="field">
+            <span>Имя и фамилия</span>
+            <input name="name" type="text" placeholder="Ваше имя" autocomplete="name" required>
+          </label>
+
+          <div class="field">
+            <span>Вы будете?</span>
+            <div class="choices">
+              <label class="choice">
+                <input type="radio" name="attendance" value="Да, буду" required>
+                <span>Да, буду</span>
+              </label>
+              <label class="choice">
+                <input type="radio" name="attendance" value="Не смогу">
+                <span>Не смогу</span>
+              </label>
+            </div>
+          </div>
+
+          <label class="field">
+            <span>Количество гостей</span>
+            <select name="guests">
+              <option value="1">1 гость</option>
+              <option value="2">2 гостя</option>
+              <option value="3">3 гостя</option>
+              <option value="4">4 гостя</option>
+            </select>
+          </label>
+
+          <label class="field">
+            <span>Комментарий</span>
+            <textarea name="comment" rows="3" placeholder="Если хотите что-то добавить"></textarea>
+          </label>
+
+          <button class="submit-btn" type="submit">Отправить ответ</button>
+          <p class="form-message" id="formMessage" aria-live="polite"></p>
+        </form>
+
+        <div class="footer-note">Birthday party · 30</div>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
