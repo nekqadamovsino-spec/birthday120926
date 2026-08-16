@@ -21,30 +21,54 @@ const musicBtn = document.getElementById('musicBtn');
 
 let musicPlaying = false;
 
-musicBtn.addEventListener('click', async () => {
+async function startMusic() {
+  try {
+    await bgMusic.play();
+    musicPlaying = true;
+    musicBtn.classList.add('playing');
+  } catch (e) {
+    console.log('Автозапуск музыки заблокирован браузером');
+  }
+}
+
+function stopMusic() {
+  bgMusic.pause();
+  musicPlaying = false;
+  musicBtn.classList.remove('playing');
+}
+
+/* Пытаемся запустить автоматически */
+window.addEventListener('load', () => {
+  startMusic();
+});
+
+/* Ручная кнопка */
+musicBtn.addEventListener('click', async (e) => {
+  e.stopPropagation();
+
   if (musicPlaying) {
-    bgMusic.pause();
-    musicBtn.classList.remove('playing');
-    musicPlaying = false;
+    stopMusic();
   } else {
-    try {
-      await bgMusic.play();
-      musicBtn.classList.add('playing');
-      musicPlaying = true;
-    } catch (error) {
-      console.log('Не удалось запустить музыку:', error);
-    }
+    await startMusic();
   }
 });
 const envelopeScreen = document.getElementById('envelopeScreen');
 const envelope = document.getElementById('envelope');
 
-envelope.addEventListener('click', () => {
+if (envelope && envelopeScreen) {
+  envelope.addEventListener('click', async () => {
 
-  envelope.classList.add('open');
+    /* Если браузер заблокировал автозапуск —
+       включаем музыку после клика по конверту */
+    if (!musicPlaying) {
+      await startMusic();
+    }
 
-  setTimeout(() => {
-    envelopeScreen.classList.add('hide');
-  }, 1400);
+    envelope.classList.add('open');
 
-});
+    setTimeout(() => {
+      envelopeScreen.classList.add('hide');
+    }, 1400);
+
+  });
+}
