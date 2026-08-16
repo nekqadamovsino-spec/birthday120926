@@ -36,3 +36,15 @@ musicBtn.addEventListener('click', async () => {
     }
   }
 });
+const envelopeScreen = document.getElementById('envelopeScreen');
+const envelope = document.getElementById('envelope');
+
+envelope.addEventListener('click', () => {
+
+  envelope.classList.add('open');
+
+  setTimeout(() => {
+    envelopeScreen.classList.add('hide');
+  }, 1400);
+
+});
