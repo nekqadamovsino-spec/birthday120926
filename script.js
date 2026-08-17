@@ -1,20 +1,32 @@
 const form = document.getElementById('rsvpForm');
 const message = document.getElementById('formMessage');
 
-form.addEventListener('submit', (e) => {
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxfBy0jT3YsosWgAPRXGtoDZT-M9vCf7apjM4bnr3iLl8AdGJnXVKbtjc-d7gY_-IUCsg/exec';
+
+form.addEventListener('submit', async (e) => {
   e.preventDefault();
+
+  message.textContent = 'Отправляем...';
 
   const data = Object.fromEntries(new FormData(form).entries());
 
-  // Пока данные сохраняются на устройстве.
-  // Позже сюда можно подключить Google Apps Script и отправлять ответы в таблицу.
-  localStorage.setItem('birthday_rsvp', JSON.stringify({
-    ...data,
-    sentAt: new Date().toISOString()
-  }));
+  try {
+    await fetch(SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: {
+        'Content-Type': 'text/plain;charset=utf-8'
+      },
+      body: JSON.stringify(data)
+    });
 
-  message.textContent = 'Спасибо! Ваш ответ сохранён.';
-  form.reset();
+    message.textContent = 'Спасибо! Ваш ответ отправлен.';
+    form.reset();
+
+  } catch (error) {
+    console.error(error);
+    message.textContent = 'Ошибка отправки. Попробуйте ещё раз.';
+  }
 });
 const bgMusic = document.getElementById('bgMusic');
 const musicBtn = document.getElementById('musicBtn');
