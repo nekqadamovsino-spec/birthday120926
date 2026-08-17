@@ -49,11 +49,6 @@ function stopMusic() {
   musicBtn.classList.remove('playing');
 }
 
-/* Пытаемся запустить автоматически */
-window.addEventListener('load', () => {
-  startMusic();
-});
-
 /* Ручная кнопка */
 musicBtn.addEventListener('click', async (e) => {
   e.stopPropagation();
@@ -68,19 +63,20 @@ const envelopeScreen = document.getElementById('envelopeScreen');
 const envelope = document.getElementById('envelope');
 
 if (envelope && envelopeScreen) {
+
   envelope.addEventListener('click', async () => {
 
-    /* Если браузер заблокировал автозапуск —
-       включаем музыку после клика по конверту */
-    if (!musicPlaying) {
-      await startMusic();
-    }
-
+    // Открываем конверт
     envelope.classList.add('open');
 
+    // Одновременно запускаем музыку
+    await startMusic();
+
+    // Убираем экран конверта
     setTimeout(() => {
       envelopeScreen.classList.add('hide');
     }, 1400);
 
   });
+
 }
